@@ -108,7 +108,14 @@ namespace Microsoft.Boogie
       }
       else if (CommandLineOptions.Clo.ShowVerifiedProcedureCount)
       {
+        ConsoleColor col = Console.ForegroundColor;
+        if (stats.ErrorCount > 0) {
+          Console.ForegroundColor = ConsoleColor.Red;
+        } else {
+          Console.ForegroundColor = ConsoleColor.Green;
+        }
         Console.Write("{0} finished with {1} verified, {2} error{3}", CommandLineOptions.Clo.DescriptiveToolName, stats.VerifiedCount, stats.ErrorCount, stats.ErrorCount == 1 ? "" : "s");
+        Console.ForegroundColor = col;
       }
       else 
       {
